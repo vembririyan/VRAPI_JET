@@ -33,7 +33,7 @@ Framework ini dirancang agar proses pengembangan menjadi lebih cepat tanpa konfi
 Clone repository:
 
 ```bash
-git clone https://github.com/vembririyan/VRAPI_JET
+git clone https://github.com/vembririyan/VRAPI_JET.git
 ```
 
 Masuk ke folder project:

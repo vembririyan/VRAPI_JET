@@ -2,11 +2,11 @@
   "name": "vrapi_jet",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "online": "pm2 start index.js --name=VRApi_jet",
+    "online": "pm2 start app.js --name=VRApi_jet",
     "stop": "pm2 stop VRApi_jet",
-    "start": "nodemon index.js"
+    "start": "nodemon app.js"
   },
   "author": "Vembri Riyan Diansah",
   "license": "MIT",

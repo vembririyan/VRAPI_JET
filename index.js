@@ -1,5 +1,12 @@
-const {app,startServer} = require('./app/config.js')
-app.use(require('./model/m_test.js'))
+const { app, startServer } = require("./app/config.js");
+const fs = require("fs");
+const path = require("path");
 
-startServer()
-  
+const dir = path.join(__dirname, "model");
+
+fs.readdirSync(dir).forEach((file) => {
+  const route = require(path.join(dir, file));
+  app.use(route);
+});
+
+startServer();

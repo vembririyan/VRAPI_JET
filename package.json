@@ -3,10 +3,11 @@
   "version": "1.0.1",
   "description": "",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "online": "pm2 start app.js --name=VRApi_jet",
     "stop": "pm2 stop VRApi_jet",
-    "start": "nodemon app.js"
+    "start": "tsx watch server.js"
   },
   "author": "Vembri Riyan Diansah",
   "license": "MIT",

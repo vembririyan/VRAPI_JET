@@ -1,4 +1,4 @@
-import express from "express";
+import { express } from "./config";
 
 import { mysqlPool, postgresPool } from "./connection";
 import validation from "./validation";

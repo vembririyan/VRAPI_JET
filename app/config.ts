@@ -11,6 +11,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import rateLimit from "@/middleware/rate-limit";
+import helmet from "helmet";
 import { pathToFileURL } from "node:url";
 import { allowedOrigins } from "../allowed-origin";
 
@@ -38,18 +40,24 @@ const corsOptions = {
 };
 
 // Middleware
+app.use(rateLimit);
+app.disable("x-powered-by");
+app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.static(PUBLIC_DIR));
-app.use(express.json({ limit: "200mb" }));
+app.use(express.json({ limit: "5mb" }));
 app.use(
   express.urlencoded({
     extended: true,
-    limit: "200mb",
+    limit: "5mb",
   }),
 );
 
+console.log("x-powered-by:", app.get("x-powered-by"));
+
 // Error Handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  req.setTimeout(10000);
   if (err.message === "Forbidden") {
     return res.status(403).json({
       success: false,
@@ -84,4 +92,5 @@ for (const file of getRouteFiles(ROUTES_DIR)) {
   app.use(module.default);
 }
 
+export { express };
 export default app;
